@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【完全版】認知・メディアプランニング インプットガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutrals with Indigo Accents -->
+    <!-- Application Structure Plan: A comprehensive 12-step masterclass dashboard for rigorous onboarding. Organized into 5 logical phases: Foundation -> Targeting/Context (incl. Cookieless) -> Metrics/Quality (incl. Attention) -> Selection/Allocation (incl. Format optimization) -> Expansion (BtoB/BtoC). Left panel acts as navigation and progress tracker. Right panel contains curated URLs and robust explanations. Bottom area includes visual aids for foundational concepts. -->
+    <!-- Visualization & Content Choices: Report Info -> Goal -> Viz/Presentation Method -> Interaction -> Justification -> Library/Method. 
+         1. Learning Path -> Guide user -> Interactive Step List -> Click to switch content -> Clear progression -> HTML/JS. 
+         2. Resource Links -> Provide reading material -> Card Layout -> Hover effects, click to external -> Easy to scan and click -> HTML/CSS. 
+         3. Media Characteristics -> Teach media selection -> Bubble Chart (X: Targeting, Y: Reach, Size: Impact) -> Hover for details -> Visually demonstrates why different media are combined in planning -> Chart.js Canvas. 
+         4. Learning Weight -> Show priority -> Bar Chart horizontal -> Hover -> Reinforces what to focus on -> Chart.js Canvas. 
+         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f5f5f4; /* stone-100 */
+            color: #1c1917; /* stone-900 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased h-screen flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md z-10 flex-shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold tracking-tight">📝 Media Planning Master Guide</h1>
+                <p class="text-indigo-200 text-sm mt-1">認知・ブランディングプランナー プロフェッショナル養成ロードマップ</p>
+            </div>
+            <div class="text-right hidden sm:block">
+                <div class="text-sm text-indigo-200">学習進捗</div>
+                <div class="font-bold text-lg" id="progress-text">0 / 12 Steps</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row gap-6 overflow-hidden">
+        
+        <!-- Sidebar Navigation (Roadmap) -->
+        <aside class="w-full lg:w-1/3 flex flex-col bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden flex-shrink-0 lg:h-full">
+            <div class="p-5 border-b border-stone-100 bg-stone-50">
+                <h2 class="font-bold text-stone-800 text-lg">📚 学習ステップ (全12章)</h2>
+                <p class="text-xs text-stone-500 mt-1">実務のプランニング手順と最新トレンドに沿って学びます。</p>
+            </div>
+            <div class="overflow-y-auto p-3 space-y-2 hide-scrollbar flex-1" id="step-nav-container">
+                <!-- Steps will be injected here by JS -->
+            </div>
+        </aside>
+
+        <!-- Main Detail Area -->
+        <section class="w-full lg:w-2/3 flex flex-col gap-6 overflow-y-auto hide-scrollbar lg:h-full pb-10">
+            
+            <!-- Intro Paragraph -->
+            <div class="bg-indigo-50 rounded-2xl p-6 border border-indigo-100 flex-shrink-0">
+                <h2 class="text-lg font-bold text-indigo-900 mb-2" id="current-step-title">ロードマップの概要</h2>
+                <p class="text-sm text-indigo-800 leading-relaxed" id="current-step-desc">
+                    クリエイティブ（何を言うか）を最大限活かすためには、メディアプランニング（誰に・どこで・どれくらい言うか）の土台が不可欠です。このガイドでは、基礎的な業務フローから始まり、現代のプランナーに必須の「アテンション（注視）」や「クッキーレス対策」、「メディア×クリエイティブの連動」といった最新の現場ナレッジまで網羅的にインプットします。
+                </p>
+            </div>
+
+            <!-- Resource Links List -->
+            <div id="resource-container" class="space-y-4 flex-shrink-0">
+                <!-- Resources injected by JS -->
+            </div>
+
+            <!-- Interactive Concept Visualizations -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-stone-200 mt-4 flex-shrink-0">
+                <div class="mb-4">
+                    <h3 class="font-bold text-stone-800 border-b pb-2">📊 [補足] メディアプランニングの概念理解</h3>
+                    <p class="text-xs text-stone-500 mt-2">記事のインプットと併せて、以下の視覚データを参考にメディアの役割と指標の関係性を把握してください。</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Chart 1: Media Characteristics -->
+                    <div class="flex flex-col">
+                        <h4 class="text-sm font-bold text-stone-700 text-center mb-2">メディア別 特性マップ（概念図）</h4>
+                        <div class="chart-container flex-1">
+                            <canvas id="mediaMapChart"></canvas>
+                        </div>
+                        <p class="text-[10px] text-stone-400 text-center mt-2">縦軸: リーチ力 (広さ) / 横軸: ターゲティング精度 (深さ)<br>円の大きさ: 情報伝達量・インパクト</p>
+                    </div>
+
+                    <!-- Chart 2: Funnel & KPI -->
+                    <div class="flex flex-col">
+                        <h4 class="text-sm font-bold text-stone-700 text-center mb-2">認知〜獲得ファネルと主なKPI</h4>
+                        <div class="chart-container flex-1">
+                            <canvas id="kpiFunnelChart"></canvas>
+                        </div>
+                         <p class="text-[10px] text-stone-400 text-center mt-2">認知プランニングでは上位ファネル（インプレッション、リーチ、態度変容）に重きを置きます。</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        // --- Data Structure (Comprehensive 12 Steps for Pro Onboarding) ---
+        const curriculum = [
+            // Phase 1: 基礎と全体像 (Foundation)
+            {
+                id: 'step1',
+                title: 'Step 1: プランニングの前提と「認知」',
+                priority: 'High - 必修',
+                priorityColor: 'bg-red-100 text-red-800 border-red-200',
+                desc: 'ブランディング施策において、そもそも「メディアプランニング」がなぜ必要なのか、マーケティングファネル全体の中でどう位置づけられるかを理解します。',
+                links: [
+                    { 
+                        title: 'マーケティングにおけるメディアプランニングの役割とは', 
+                        url: 'https://markezine.jp/article/detail/38555', 
+                        source: 'MarkeZine', 
+                        summary: 'クリエイティブ(中身)だけでなく、「枠(メディア)」を通じてどうターゲットに価値を届けるかという全体設計の重要性を学びます。' 
+                    }
+                ]
+            },
+            {
+                id: 'step2',
+                title: 'Step 2: ブランディング業務の全体フロー',
+                priority: 'High - 必修',
+                priorityColor: 'bg-red-100 text-red-800 border-red-200',
+                desc: '各論に入る前に「仕事の流れ」の全体像（森）を把握します。オリエンテーション（与件整理）から現状分析、戦略立案、メディア選定、実施、そして効果測定（振り返り）までの一連のプロセスです。',
+                links: [
+                    { 
+                        title: '広告プランニングの基本手順：オリエンから効果測定まで', 
+                        url: 'https://webtan.impress.co.jp/e/2022/02/16/42316', 
+                        source: 'Web担当者Forum', 
+                        summary: '案件の始まりから、課題抽出、戦略の策定、そして実施後のレポート作成までの実務の標準的な流れを把握します。' 
+                    }
+                ]
+            },
+            // Phase 2: ターゲットと文脈設計 (Targeting & Context)
+            {
+                id: 'step3',
+                title: 'Step 3: ターゲット・インサイトとメディア接触',
+                priority: 'High - 必修',
+                priorityColor: 'bg-red-100 text-red-800 border-red-200',
+                desc: '「誰に」届けるか。ペルソナが普段「いつ・どこで・どんな情報に触れているか（カスタマージャーニー）」を想像し、接点を設計するプロセスを学びます。',
+                links: [
+                    { 
+                        title: 'カスタマージャーニーマップの作り方とメディア配置', 
+                        url: 'https://webtan.impress.co.jp/e/2021/03/10/39327', 
+                        source: 'Web担当者Forum', 
+                        summary: '認知から購買までの各フェーズにおいて、ターゲットの感情変化に合わせて適切なメディアをどのように配置するかを学びます。' 
+                    }
+                ]
+            },
+            {
+                id: 'step4',
+                title: 'Step 4: ブランド想起の鍵（CEPと買いやすさ）',
+                priority: 'High - 必修',
+                priorityColor: 'bg-red-100 text-red-800 border-red-200',
+                desc: '「どんな時に思い出されるか(メンタルアベイラビリティ/CEP)」をメディアの文脈で作るだけでなく、「実際に買いやすいか(フィジカルアベイラビリティ)」の両輪が揃って初めて売上に繋がることを学びます。',
+                links: [
+                    { 
+                        title: 'カテゴリーエントリーポイント(CEP)とは？ブランド想起の鍵', 
+                        url: 'https://xtrend.nikkei.com/atcl/contents/18/00523/00003/', 
+                        source: '日経クロストレンド', 
+                        summary: '消費者が購買する「きっかけ(状況、目的)」。これを複数おさえ、その文脈に合わせて広告を当てる重要性を学びます。' 
+                    },
+                    { 
+                        title: 'メンタルとフィジカルアベイラビリティの両輪', 
+                        url: 'https://www.innova-jp.com/marketing/mental-and-physical-availability', 
+                        source: 'Innova', 
+                        summary: 'メディアで認知を取るだけでなく、店頭への配荷や検索のしやすさがセットになって初めて効果が出る仕組みを学びます。' 
+                    }
+                ]
+            },
+            {
+                id: 'step5',
+                title: 'Step 5: クッキーレスとコンテキストターゲティング',
+                priority: 'High - トレンド',
+                priorityColor: 'bg-blue-100 text-blue-800 border-blue-200',
+                desc: '【最新トレンド】個人情報保護の観点から「人」を追いかけるターゲティングが難しくなる中、「今どんな記事・コンテンツを読んでいるか（文脈）」に広告を合わせる手法の重要性を学びます。',
+                links: [
+                    { 
+                        title: 'クッキーレス時代の救世主「コンテキストターゲティング」とは', 
+                        url: 'https://markezine.jp/article/detail/39567', 
+                        source: 'MarkeZine', 
+                        summary: '「誰が」ではなく「何を」見ているかに着目し、コンテンツの文脈（コンテキスト）に合わせて自然にブランドメッセージを届ける手法を理解します。' 
+                    }
+                ]
+            },
+            // Phase 3: 指標と質的評価 (Metrics & Quality)
+            {
+                id: 'step6',
+                title: 'Step 6: 認知施策の基本指標とKPI',
+                priority: 'Medium - 概念理解',
+                priorityColor: 'bg-amber-100 text-amber-800 border-amber-200',
+                desc: '「認知が広がったか」をどう測るか。メディアの評価指標（リーチ、フリークエンシー等）や、ブランドリフト調査について基礎用語を学びます。',
+                links: [
+                    { 
+                        title: 'リーチ、フリークエンシー、GRPの正しい理解', 
+                        url: 'https://dentsu-ho.com/articles/7144', 
+                        source: '電通報', 
+                        summary: '「何人に届いたか(リーチ)」「何回届いたか(フリークエンシー)」。情報到達の基本指標を理解します。' 
+                    },
+                    { 
+                        title: 'ブランドリフト調査とは？認知施策の効果測定', 
+                        url: 'https://marketing.yahoo.co.jp/service/brandlift.html', 
+                        source: 'Yahoo!マーケティング', 
+                        summary: 'クリックではなく、広告接触によって「ブランド認知」や「購買意向」がどれだけ上がったかをアンケート等で測る手法です。' 
+                    }
+                ]
+            },
+            {
+                id: 'step7',
+                title: 'Step 7: 「リーチ」から「アテンション（注視）」へ',
+                priority: 'High - トレンド',
+                priorityColor: 'bg-blue-100 text-blue-800 border-blue-200',
+                desc: '【最新トレンド】デジタル広告において「表示された（インプレッション）」だけでなく、「実際に画面を見られていたか（Viewability、アテンション）」を評価指標に組み込む現代の考え方です。',
+                links: [
+                    { 
+                        title: 'インプレッションの罠。注目集める「アテンション指標」', 
+                        url: 'https://www.advertimes.com/20230509/article418654/', 
+                        source: '宣伝会議 (AdverTimes)', 
+                        summary: '「広告がただ画面に出た」量ではなく、「ユーザーの目をどれだけ惹きつけたか（注視時間）」という質でメディアの価値を測る最前線の潮流を学びます。' 
+                    }
+                ]
+            },
+            {
+                id: 'step8',
+                title: 'Step 8: 有効フリークエンシー（最適な接触回数）',
+                priority: 'High - 実践必須',
+                priorityColor: 'bg-red-100 text-red-800 border-red-200',
+                desc: '「結局、何回広告を当てれば効果が出るのか？」という現場で必ずぶつかる疑問。認知と理解で必要な接触回数が違うことを学びます。',
+                links: [
+                    { 
+                        title: 'スリーヒット・セオリーと有効フリークエンシー', 
+                        url: 'https://www.macromill.com/column/marketing-research/frequency.html', 
+                        source: 'マクロミル', 
+                        summary: '「3回接触すると効果が現れる」という古典的セオリーから、広告疲れを防ぐための配信回数コントロールの基礎を学びます。' 
+                    }
+                ]
+            },
+            // Phase 4: メディア選定と予算配分 (Selection & Allocation)
+            {
+                id: 'step9',
+                title: 'Step 9: メディア×クリエイティブの接続（フォーマット）',
+                priority: 'High - 実践必須',
+                priorityColor: 'bg-red-100 text-red-800 border-red-200',
+                desc: '【重要実務】「枠を買うだけ」の時代は終わりました。スマホの「縦型ショート」とTVの「横型長尺」など、選んだメディアの文脈・フォーマットに最適なクリエイティブを連動させる思考を学びます。',
+                links: [
+                    { 
+                        title: '縦型動画と横型動画の違い。メディアに合わせたクリエイティブ最適化', 
+                        url: 'https://video-b.com/blog/marketing/vertical-video/', 
+                        source: 'Video BRAIN', 
+                        summary: 'TikTokやReelsのような「没入感とテンポの縦型」と、YouTubeやTVのような「ストーリーテリングの横型」で、プランニングの役割がどう変わるかを理解します。' 
+                    }
+                ]
+            },
+            {
+                id: 'step10',
+                title: 'Step 10: メディアアロケーション（予算配分）',
+                priority: 'Medium - 実践基礎',
+                priorityColor: 'bg-amber-100 text-amber-800 border-amber-200',
+                desc: '限られた予算を、どのメディアに、どういう割合で配分（アロケーション）するか。目的を達成するための最適化の考え方を学びます。',
+                links: [
+                    { 
+                        title: 'クロスメディア戦略と予算アロケーションの基本', 
+                        url: 'https://www.advertimes.com/20210405/article345437/', 
+                        source: '宣伝会議 (AdverTimes)', 
+                        summary: '複数のメディアの長所を組み合わせ、予算をどこにどれだけ投下すれば一番効率的かをシミュレーションする考え方を学びます。' 
+                    }
+                ]
+            },
+            {
+                id: 'step11',
+                title: 'Step 11: テレビCMとデジタルの相乗効果',
+                priority: 'High - トレンド・実践',
+                priorityColor: 'bg-red-100 text-red-800 border-red-200',
+                desc: '現在の認知プランニングで最も重要なテーマ。マス（TV）の圧倒的なリーチ力と、デジタル動画（YouTubeやTVer等）の補完リーチをどう組み合わせるかです。',
+                links: [
+                    { 
+                        title: 'テレビCM×Web広告の相乗効果（インクリメンタルリーチ）', 
+                        url: 'https://www.novacell.com/column/tvcm-web-synergy', 
+                        source: 'ノバセル', 
+                        summary: 'TVだけでは届かない層（若年層やライトビューア）にデジタル動画でどうリーチを補完（インクリメンタルリーチ）するかの戦略を学びます。' 
+                    }
+                ]
+            },
+            // Phase 5: 視野拡大 (Expansion)
+            {
+                id: 'step12',
+                title: 'Step 12: BtoB / BtoCのプランニングの違い',
+                priority: 'Medium - 視野拡大',
+                priorityColor: 'bg-amber-100 text-amber-800 border-amber-200',
+                desc: '商材が一般消費者向け（BtoC）か企業向け（BtoB）かで、目指すべき認知の形や選ぶべきメディアは大きく異なります。実務の幅を広げるための視点です。',
+                links: [
+                    { 
+                        title: 'BtoBとBtoCのマーケティング＆メディア選定の違い', 
+                        url: 'https://ferret-plus.com/13018', 
+                        source: 'ferret', 
+                        summary: 'BtoCが「マス認知からの衝動買い」も狙えるのに対し、BtoBは「決裁者へのピンポイントリーチ」と「名指し検索の獲得（第一想起）」がゴールになる違いを学びます。' 
+                    },
+                    { 
+                        title: 'BtoBにおけるタクシー・エレベーター広告の役割', 
+                        url: 'https://www.fastgrow.jp/articles/btob-taxi-ads', 
+                        source: 'FastGrow', 
+                        summary: '決裁者に直接認知を届けるための、BtoB特有のオフラインメディア（タクシーサイネージなど）の活用法を知ります。' 
+                    }
+                ]
+            }
+        ];
+
+        // --- State Management ---
+        let currentStepId = curriculum[0].id;
+        let completedSteps = new Set();
+
+        // --- DOM Elements ---
+        const stepNavContainer = document.getElementById('step-nav-container');
+        const currentStepTitle = document.getElementById('current-step-title');
+        const currentStepDesc = document.getElementById('current-step-desc');
+        const resourceContainer = document.getElementById('resource-container');
+        const progressText = document.getElementById('progress-text');
+
+        // --- Initialization ---
+        function init() {
+            renderStepNav();
+            renderStepContent(currentStepId);
+            initCharts();
+        }
+
+        // --- Render Functions ---
+        function renderStepNav() {
+            stepNavContainer.innerHTML = '';
+            curriculum.forEach((step, index) => {
+                const isActive = step.id === currentStepId;
+                const isCompleted = completedSteps.has(step.id);
+                
+                const navItem = document.createElement('div');
+                navItem.className = `cursor-pointer rounded-xl p-4 transition-all duration-200 border-2 ${
+                    isActive ? 'bg-indigo-50 border-indigo-500 shadow-sm' : 'bg-white border-transparent hover:border-stone-200 hover:bg-stone-50'
+                }`;
+                
+                navItem.innerHTML = `
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1 pr-2">
+                            <div class="text-xs font-bold mb-1 tracking-wider text-stone-500">STEP ${index + 1}</div>
+                            <h3 class="font-bold text-sm ${isActive ? 'text-indigo-900' : 'text-stone-700'} leading-snug">${step.title.split(': ')[1] || step.title}</h3>
+                            <div class="mt-2 inline-block px-2 py-0.5 rounded text-[10px] font-bold border ${step.priorityColor}">
+                                Priority: ${step.priority}
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 mt-1">
+                            ${isCompleted 
+                                ? '<span class="text-emerald-500 text-xl">☑</span>' 
+                                : `<span class="text-stone-300 text-xl group-hover:text-stone-400">☐</span>`
+                            }
+                        </div>
+                    </div>
+                `;
+                
+                navItem.addEventListener('click', () => {
+                    currentStepId = step.id;
+                    renderStepNav();
+                    renderStepContent(step.id);
+                });
+                
+                stepNavContainer.appendChild(navItem);
+            });
+            
+            progressText.innerText = `${completedSteps.size} / ${curriculum.length} Steps`;
+        }
+
+        function renderStepContent(stepId) {
+            const step = curriculum.find(s => s.id === stepId);
+            if (!step) return;
+
+            // Fade out/in effect
+            resourceContainer.style.opacity = '0';
+            
+            setTimeout(() => {
+                currentStepTitle.innerText = step.title;
+                currentStepDesc.innerText = step.desc;
+                
+                resourceContainer.innerHTML = '';
+                
+                step.links.forEach((link, idx) => {
+                    const card = document.createElement('a');
+                    card.href = link.url;
+                    card.target = '_blank'; // Open in new tab
+                    card.className = "block bg-white border border-stone-200 rounded-xl p-5 hover:border-indigo-400 hover:shadow-md transition-all duration-200 group relative overflow-hidden";
+                    
+                    card.innerHTML = `
+                        <div class="absolute top-0 left-0 w-1 h-full bg-stone-200 group-hover:bg-indigo-500 transition-colors"></div>
+                        <div class="pl-2">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-xs font-bold text-stone-500 bg-stone-100 px-2 py-1 rounded">出典: ${link.source}</span>
+                                <span class="text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity text-sm">外部サイトへ ↗</span>
+                            </div>
+                            <h4 class="text-base font-bold text-indigo-900 mb-2 group-hover:text-indigo-700 transition-colors">${link.title}</h4>
+                            <p class="text-sm text-stone-600 leading-relaxed">${link.summary}</p>
+                        </div>
+                    `;
+                    resourceContainer.appendChild(card);
+                });
+
+                // Add "Mark as Complete" button
+                const completeBtnWrapper = document.createElement('div');
+                completeBtnWrapper.className = "pt-4 flex justify-end";
+                const isCompleted = completedSteps.has(step.id);
+                
+                completeBtnWrapper.innerHTML = `
+                    <button class="px-6 py-2 rounded-lg font-bold text-sm transition-colors flex items-center gap-2 ${
+                        isCompleted 
+                        ? 'bg-stone-100 text-stone-500 hover:bg-stone-200' 
+                        : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm'
+                    }">
+                        ${isCompleted ? '☑ 学習完了済 (クリックで未完了に戻す)' : 'このステップのインプットを完了する'}
+                    </button>
+                `;
+                
+                completeBtnWrapper.querySelector('button').addEventListener('click', () => {
+                    if (isCompleted) {
+                        completedSteps.delete(step.id);
+                    } else {
+                        completedSteps.add(step.id);
+                        // Auto-advance logic
+                        const currIdx = curriculum.findIndex(s => s.id === stepId);
+                        if (currIdx < curriculum.length - 1) {
+                             currentStepId = curriculum[currIdx + 1].id;
+                        }
+                    }
+                    renderStepNav();
+                    renderStepContent(currentStepId);
+                });
+                
+                resourceContainer.appendChild(completeBtnWrapper);
+
+                resourceContainer.style.opacity = '1';
+            }, 150);
+        }
+
+        // --- Charts Initialization (Chart.js) ---
+        function initCharts() {
+            // Chart 1: Media Characteristics (Bubble Chart)
+            const ctxMedia = document.getElementById('mediaMapChart').getContext('2d');
+            new Chart(ctxMedia, {
+                type: 'bubble',
+                data: {
+                    datasets: [
+                        { label: 'TV CM', data: [{ x: 2, y: 9, r: 20 }], backgroundColor: 'rgba(99, 102, 241, 0.6)', borderColor: 'rgb(99, 102, 241)' },
+                        { label: 'SNS広告', data: [{ x: 8, y: 7, r: 15 }], backgroundColor: 'rgba(20, 184, 166, 0.6)', borderColor: 'rgb(20, 184, 166)' },
+                        { label: 'リスティング', data: [{ x: 9, y: 3, r: 10 }], backgroundColor: 'rgba(245, 158, 11, 0.6)', borderColor: 'rgb(245, 158, 11)' },
+                        { label: '雑誌/新聞', data: [{ x: 6, y: 5, r: 12 }], backgroundColor: 'rgba(139, 92, 246, 0.6)', borderColor: 'rgb(139, 92, 246)' },
+                        { label: 'OOH(屋外)', data: [{ x: 3, y: 6, r: 15 }], backgroundColor: 'rgba(236, 72, 153, 0.6)', borderColor: 'rgb(236, 72, 153)' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': (ターゲティング ' + context.raw.x + ', リーチ ' + context.raw.y + ')';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { 
+                            title: { display: true, text: 'ターゲティング精度 (狭く深く)', font: {size: 10} },
+                            min: 0, max: 10, ticks: { display: false }
+                        },
+                        y: { 
+                            title: { display: true, text: 'リーチ力 (広く浅く)', font: {size: 10} },
+                            min: 0, max: 10, ticks: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Funnel & KPI (Bar Chart horizontal representing funnel)
+            const ctxFunnel = document.getElementById('kpiFunnelChart').getContext('2d');
+            new Chart(ctxFunnel, {
+                type: 'bar',
+                data: {
+                    labels: ['認知 (Awareness)', '興味 (Interest)', '検討 (Consideration)', '購買 (Action)'],
+                    datasets: [{
+                        label: '重視度合い',
+                        data: [100, 75, 50, 25],
+                        backgroundColor: [
+                            'rgba(99, 102, 241, 0.8)', // Indigo for Awareness
+                            'rgba(129, 140, 248, 0.6)', 
+                            'rgba(165, 180, 252, 0.4)',
+                            'rgba(224, 231, 255, 0.4)'
+                        ],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Horizontal bar
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const kpis = [
+                                        'KPI: リーチ, GRP, インプレッション, ブランド認知度',
+                                        'KPI: CTR, サイトセッション数, 検索数(サーチリフト)',
+                                        'KPI: 滞在時間, 資料請求数',
+                                        'KPI: CVR, CPA, 売上'
+                                    ];
+                                    return kpis[context.dataIndex];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { display: false, max: 110 },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // Run init on load
+        window.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+</html>
